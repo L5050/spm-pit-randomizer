@@ -1,13 +1,21 @@
 # SPM Flipside Pit Randomizer Mod
 This mod randomizes the contents of the Flipside Pit of 100 Trials and adds a multitude of new features and balance changes.
 
-Install this mod as you would any other Riivolution mod on console or Dolphin; download can be found [here.](https://github.com/shiken-yme/spm-pit-randomizer/releases) Please do not enable any more than one SPM mod at one time, as they are not cross-compatible.
+Install this mod as you would any other Riivolution mod on console or Dolphin; the download can be found [here.](https://github.com/shiken-yme/spm-pit-randomizer/releases)
 
-For Console (Wii or vWii): drag & drop the contents of the ZIP to the root of your SD card, insert the SD card into your console, and boot up Riivolution. (To be clear, you want the "PitRando" and "riivolution" folders on the root of your SD card.)
+You may also install the mod through L5050's Flipside Mod Manager (FliMM), which can be found [here.](https://github.com/L5050/Flipside-Mod-Manager) This is highly recommended for playing mods on console, because SPM mods loaded through Riivolution will always crash upon resetting the game.
 
-For Dolphin: find your Riivolution folder (you can find this by right-clicking your game, clicking *Start with Riivolution Patches*, then *Open Riivolution XML*; this will open the directory you need to be in), then drag and drop the contents of the ZIP to that folder. Close the folder and right-click, select *Start with Riivolution Patches*, then enable the mod.
+Please do not enable any more than one SPM mod at one time, as they are not cross-compatible.
 
-If you run the game on Dolphin, be sure to add/enable the REL Loader Gecko code for your game version before running the game with Riivolution patches. You can find the codes [here.](https://github.com/SeekyCt/spm-rel-loader/tree/master/spm-rel-loader/loader)
+### For Console (Wii or vWii):
+- If you have a legally-obtained ISO/WBFS rip of the game & a modded Wii/Wii U, you can use [Flipside Mod Manager](https://github.com/L5050/Flipside-Mod-Manager) to directly patch the game and then use your favorite USB Loader to load the game (I recommend using [Wii Backup Manager](https://wiibackupmanager.co.uk/WiiBackupManager_Build78.html) to load your game onto your console).
+- Be sure to enable Gecko Codes on your USB Loader and include the REL Loader GCT for your version; instructions for how to do this can be found [here.](https://github.com/SeekyCt/spm-practice-codes/blob/main/INSTALLING.md#console-with-usb-loader-and-patched-iso)
+
+**ALTERNATIVELY,** you may load the mod through Riivolution. Download the ZIP for your version in Releases, then drag & drop the contents of the ZIP to the root of your SD card, insert the SD card into your console, and boot up Riivolution. (To be clear, you want the "PitRando" and "riivolution" folders on the root of your SD card.)
+
+### For Dolphin:
+- Find your Riivolution folder (you can find this by right-clicking your game, clicking *Start with Riivolution Patches*, then *Open Riivolution XML*; this will open the directory you need to be in), then drag and drop the contents of the ZIP to that folder (this means a "riivolution" and "PitRando" folder. Close the folder and right-click, select *Start with Riivolution Patches*, then enable the mod.
+- Be sure to add/enable the REL Loader Gecko code for your game version before running the game with Riivolution patches. You can find the codes [here.](https://github.com/SeekyCt/spm-rel-loader/tree/master/spm-rel-loader/loader)
 
 ## Features
 * Randomizes spawn/exit doors & room layouts while (ideally) never creating any areas that are impossible to access without glitches
