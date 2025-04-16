@@ -21,6 +21,8 @@ double sqrt(double x);
 
 double pow(double base, double exponent);
 
+double floor(double x);
+
 #define fabs(x) __fabs(x)
 #define fabsf(x) __fabsf(x)
 #define abs(x) __abs(x)

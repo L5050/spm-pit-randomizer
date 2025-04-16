@@ -54,6 +54,11 @@
 8003ab80:windowDispGX2_Waku_col
 // more
 
+// winmgr.c
+8003bc78:winMgrSelectEntry
+8003c8a8:winMgrSelect
+8003c90c:winMgrSelectDelete
+
 // acdrv.c
 8003eb4c:acInit
 8003eba0:acReInit
@@ -137,18 +142,30 @@
 // more
 
 // mapdrv.c
+8007f1dc:mapGetWork
 8008cf30:mapGrpFlagOn
 8008d2fc:mapGrpFlagOff
 8008e11c:mapGrpFlag4On
+8008e4e8:mapGrpFlag4Off
+8008c440:mapObjFlagOn
+8008c618:mapObjFlagOff
+8008181c:mapLoad
 // more
 
 // somewhere
 800b426c:func_800b426c
 800cd554:func_800cd554
 
-// roten or something idk man
-
 1,5,15b5b0:dan_rotenShopItems
+
+// eff_spm_recovery.c
+80091654:effSpmRecoveryEntry
+
+// eff_spm_spindash.c
+800970ac:effSpmSpindashEntry
+
+// eff_kemuri_test.c
+800c7944:effKemuriTestEntry
 
 // eff_nice.c
 800CC01C:effNiceEntry
@@ -181,19 +198,24 @@
 800d32e4:evt_snd_sfx_wait_name
 800d3464:evt_snd_envon_f
 800d34b8:evt_snd_string_call
-800d36f4:func_800d36f4
+800d36f4:evt_snd_set_sfx_reverb_mode
+800d2c00:evt_snd_sfxon_3d_player
 // more
 
 // evt_sub.c
 800d37d8:evt_sub_intpl_msec_init
 800d3878:evt_sub_intpl_msec_get_value
 800d40a4:evt_sub_random
+800d44b0:evt_key_get_button
 800d46d8:evt_sub_set_game_speed
 800d4de4:func_800d4de4
 800d4774:evt_sub_get_entername
+800d47a8:evt_sub_set_entername
 800d4960:evt_sub_get_language
 800d4d30:evt_sub_hud_configure
-800d74a0:func_800d74a0
+800d74a0:evt_sub_display_room_name
+800d7930:evt_sub_item_select_menu
+800d470c:evt_sub_get_mapname
 // more
 
 // evtmgr.c
@@ -217,6 +239,7 @@
 800de594:evtGetValue
 800de9b8:evtSetValue
 800df1fc:evtSetFloat
+800dedb8:evtGetFloat
 // bss
 8050ce30:evt_debug_put_reg_str
 // more
@@ -256,7 +279,7 @@
 // evt_eff.c
 800e57bc:evt_eff
 800e6148:evt_eff_softdelete
-800e6250:evt_eff_exclamation_question
+800e6250:evt_eff_fukidashi
 // more
 
 // evt_env.c
@@ -272,9 +295,11 @@
 // evt_case.c
 800e0dfc:evt_exit_case_evt
 800e0e24:evt_del_case_evt
+800e0ca4:evt_run_case_evt
 
 // evt_fairy.c
 800e8214:evt_fairy_flag_onoff
+800e84e4:evt_fairy_reset
 // more
 
 // evt_guide.c
@@ -317,6 +342,7 @@
 800ef988:evt_mario_set_pos
 800f19c0:evt_mario_wait_anim
 800efa4c:evt_mario_get_pos
+800efce0:evt_mario_get_height
 800efd28:evt_mario_direction_reset
 800efd88:evt_mario_direction_face
 800effb8:evt_mario_face_npc
@@ -326,26 +352,53 @@
 800f1954:evt_mario_set_pose
 800f2450:evt_mario_fairy_reset
 800f25b0:evt_set_gravity
+800f29c8:evt_mario_take_damage
 800f2f68:evt_mario_set_anim_change_handler
+800f3364:evt_mario_check_3d
 
 // more
 
 // evt_mobj.c
 // text
 800f3608:evt_mobj_delete
+800f3638:evt_mobj_exec_cancel
 800f380c:evt_mobj_flag_onoff
+800f3da0:evt_mobj_set_anim
 800f5ad8:evt_mobj_zyo
 800f61ac:evt_mobj_thako
 800f6440:evt_mobj_kan
 800f6610:evt_mobj_arrow
 800f8be8:evt_mobj_blk
+800f49bc:evt_mobj_sui
+800f379c:evt_mobj_get_joint_names
+800f548c:evt_mobj_hunmer_blk
+800f9688:evt_mobj_eria_block
+800fa024:evt_mobj_fire_block
+800fa75c:evt_mobj_hip_kui
+800f3b90:evt_mobj_set_scale
+800f3c98:evt_mobj_set_rotation
+800fab28:mobjGetKazePosition
+800fab88:updateKazePosition
+800fac0c:mobjDeleteKaze
+800f71d8:mobj_blk_multicoin
+800f7680:mobj_blk_breakable
+800f7ac0:mobj_blk_used
+800f7bac:mobj_blk_ladder
+800f7d7c:mobj_blk_flip
+800f8030:mobj_blk_switch
+800f8214:mobj_blk_throwable
+800f821c:mobj_blk_colour
+800f8408:mobj_blk_gravity
+800f8a08:mobj_blk_bleck_switch
 // more
 // data
 8041b6d8:mobj_save_blk_sysevt
 // more
 
 // evt_msg.c
+800fb280:_evt_msg_print
 800fba54:evt_msg_print
+800fbad8:evt_msg_print_insert
 800fbe74:evt_msg_continue
 800fbc64:evt_msg_print_add
 800fbd00:evt_msg_print_add_insert
@@ -358,6 +411,8 @@
 800fe21c:evt_npc_set_position
 800fe668:evt_npc_rotate
 800fe92c:func_800fe92c
+800fee80:evt_npc_get_scale
+800fef30:evt_npc_set_scale
 800ff470:evt_npc_set_rgba
 800ff5a4:evt_npc_set_rgbacopy
 800ff6f4:evt_npc_set_rgbacopytwo
@@ -365,17 +420,18 @@
 801004c0:evt_npc_jump_to 
 801006fc:evt_npc_arc_to
 80102574:evt_npc_glide_to
+80102d3c:evt_npc_get_max_hp
 80102e68:evt_npc_delete
 80102EB8:evt_npc_stats_set_up
 80102f5c:evt_npc_entry
-80103054:func_80103054
+80103054:evt_npc_add_flip_part
 80103108:evt_npc_set_anim
-80103410:func_80103410
+80103410:evt_npc_wait_anim_end
 8010368c:evt_npc_flag8_onoff
 801039b8:evt_npc_animflag_onoff
 80103ea8:evt_npc_set_unitwork
 80103dbc:evt_npc_get_unitwork
-80104694:func_80104694
+80104694:evt_npc_set_move_mode
 80104c94:evt_npc_set_property
 80104fac:evt_npc_modify_part
 8010508c:evt_npc_get_property
@@ -385,13 +441,16 @@
 801072a4:func_801072a4
 80107540:evt_npc_id_to_name
 80107bcc:evt_npc_set_camid
-80107cfc:func_80107cfc
-80107d20:func_80107d20
+80107cfc:evt_npc_freeze_all
+80107d20:evt_npc_unfreeze_all
 80108194:func_80108194
+801086fc:evt_npc_get_active_count
 80108d98:evt_npc_set_part_attack_power
 801093E0:evt_npc_wait_axis_movement_unit_end
+8010a37c:evt_npc_set_animpose_disp_callback
 8010a418:func_8010a418
 8010a910:evt_npc_teleport_effect
+8010be00:evt_npc_agb_async
 8010be80:evt_npc_tribe_agb_async
 // more
 
@@ -428,15 +487,19 @@
 // evt_shop.c
 80111d1c:evt_shop_set_defs
 8010d194:evt_shop_wait_coin_sfx
+80111378:evt_shop_build_flimm_pit_item_tables
 // more
 
 // mario.c
 80121f48:marioGetPtr
+80122af0:marioChkKey
+80122b4c:marioCtrlOnChk
 80122b68:marioCtrlOffChk
 80122b7c:marioKeyOffChk
 80122bf4:marioKeyOff
 80122c2c:marioKeyOn
 8012a680:marioTakeDamage
+8012b080:marioCheck3d
 8012b50c:marioSetGravity
 8012a3a8:marioCalcDamageToEnemy
 // more
@@ -474,6 +537,17 @@
 // bss
 80511a28:mario_pouch_work
 
+// mario_status.c
+80154f3c:marioStatusApplyStatuses
+8015601c:marioStatusEntry
+80156dec:statusFlippedControlsMain
+8015640c:statusPoisonMain
+801568f0:statusNoSkillsMain
+801562a8:marioCheckStatusPauseMot
+
+// mot_damage.c
+80161cf8:onHpEquals0
+
 // seq_logo.c
 80179140:seq_logoMain
 // more
@@ -481,6 +555,8 @@
 // seq_mapchange.c
 8017a464:seq_mapChangeMain
 8017af98:_unload
+//sdata
+805ae0a8:seq_mapchange_wp
 // more
 
 // seq_title.c
@@ -532,6 +608,8 @@
 8019d254:irand
 8019c54c:__assert2
 8019cf84:qqsort
+8019c688:distABf
+8019c508:getSpmarioDVDRoot
 // more
 
 // debug.c
@@ -653,10 +731,13 @@
 // text
 801adef0:npcDispMain
 801b6f2c:npcNameToPtr
+801b6fd4:npcNameToPtr_NoAssert
 801b7064:npcDelete
 801b84d4:npcHandleDmg
 801bfc48:npcSearchAnimDefs
+801c82a8:npcHandleHitXp
 801c9adc:npcGetWorkPtr
+801cc150:npcDamageMario
 801e3a1c:npcDropItem
 // more
 // data
@@ -732,8 +813,10 @@
 80267018:strlen
 // more
 
-// pow workaround
+// math workarounds
 80264408:pow
+80263f74:floor
+
 
 // s_cos.c
 80263ea0:cos
@@ -933,6 +1016,10 @@
 //   80cf5180 5 .data
 //   80f64340 6 .bss
 
+// relocatable_module.c
+1,1,3e798:_prolog
+//more
+
 // machi.c
 1,1,52e4:evt_machi_set_elv_descs
 // more
@@ -1091,6 +1178,7 @@
 800ece50:evt_item_set_position
 800eced8:evt_item_flag_onoff
 800ed12c:evt_item_wait_collected
+800ed0bc:evt_item_set_scale
 
 800f39e4:evt_mobj_get_position
 800f3e34:evt_mobj_wait_animation_end
@@ -1110,3 +1198,22 @@
 804de244:skellobits_unk7
 804de028:skellobits_unk2
 804de5b4:skellobits_unk8
+80c5b3ec:sp1_points
+801ffc88:lakitu_spawn_spiny
+801fff0c:lakitu_count_spinies
+8047db80:lakitu_onspawn_child
+802200c8:shellPart1UpdateFunc
+802201d8:shellPart2UpdateFunc
+8049376c:goomba_unk2_child
+8040b1f0:void_env_sound_setup_evt
+80457140:dimen_unk_fight_script_1
+80457190:dimen_unk_fight_script_2
+80459028:dimen_unk_fight_script_3
+801e59c4:dimen_determine_move_pos
+8021de00:ninjoe_bomb_thing
+8021907c:npc_tile_init_work
+80219118:npc_tile_setup_work
+804b4f80:npc_tile_common_onspawn_evt
+
+// mi4.c
+1,1,cac4:mi4MimiHolographicEffect

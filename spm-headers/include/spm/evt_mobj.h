@@ -15,8 +15,12 @@ CPP_WRAPPER(spm::evt_mobj)
 EVT_DECLARE(mobj_save_blk_sysevt)
 
 UNKNOWN_FUNCTION(evt_mobj_entry);
-UNKNOWN_FUNCTION(evt_mobj_delete);
-EVT_UNKNOWN_USER_FUNC(evt_mobj_exec_cancel)
+
+// evt_mobj_delete(const char * name)
+EVT_DECLARE_USER_FUNC(evt_mobj_delete, 1)
+
+// evt_mobj_exec_cancel(const char * name)
+EVT_DECLARE_USER_FUNC(evt_mobj_exec_cancel, 1)
 
 // evt_mobj_hit_onoff(bool on, const char * name)
 EVT_DECLARE_USER_FUNC(evt_mobj_hit_onoff, 2)
@@ -38,7 +42,9 @@ EVT_DECLARE_USER_FUNC(evt_mobj_set_position, 4)
 
 UNKNOWN_FUNCTION(evt_mobj_set_scale);
 UNKNOWN_FUNCTION(evt_mobj_set_rotation);
-UNKNOWN_FUNCTION(evt_mobj_set_anim);
+
+// evt_mobj_set_anim(const char * mobjName, const char * animName)
+EVT_DECLARE_USER_FUNC(evt_mobj_set_anim, 2)
 
 // evt_mobj_wait_animation_end(const char * name, UNUSED)
 EVT_DECLARE_USER_FUNC(evt_mobj_wait_animation_end, 2)

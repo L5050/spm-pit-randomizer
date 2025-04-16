@@ -26,7 +26,7 @@ UNKNOWN_FUNCTION(evt_sub_get_dist);
 UNKNOWN_FUNCTION(evt_sub_get_dir);
 UNKNOWN_FUNCTION(evt_sub_get_system_flag);
 UNKNOWN_FUNCTION(func_800d4460);
-UNKNOWN_FUNCTION(evt_key_get_button);
+EVT_DECLARE_USER_FUNC(evt_key_get_button, 2)
 UNKNOWN_FUNCTION(evt_key_get_buttonrep);
 UNKNOWN_FUNCTION(evt_key_get_buttontrg);
 UNKNOWN_FUNCTION(func_800d45ac);
@@ -36,7 +36,7 @@ UNKNOWN_FUNCTION(func_800d46a4);
 //evt_sub_set_game_speed(float newSpeed)
 EVT_DECLARE_USER_FUNC(evt_sub_set_game_speed, 1)
 
-UNKNOWN_FUNCTION(evt_sub_get_mapname);
+EVT_DECLARE_USER_FUNC(evt_sub_get_mapname, 2)
 
 
 // Returns the door/bero name
@@ -77,12 +77,15 @@ UNKNOWN_FUNCTION(func_800d6298);
 UNKNOWN_FUNCTION(func_800d6308);
 UNKNOWN_FUNCTION(func_800d6644);
 UNKNOWN_FUNCTION(func_800d6674);
-EVT_DECLARE_USER_FUNC(func_800d74a0, 2)
+EVT_DECLARE_USER_FUNC(evt_sub_display_room_name, 2)
 UNKNOWN_FUNCTION(func_800d776c);
 UNKNOWN_FUNCTION(func_800d7858);
 UNKNOWN_FUNCTION(evt_sub_get_save_name);
 UNKNOWN_FUNCTION(evt_zero_vector);
-EVT_UNKNOWN_USER_FUNC(func_800d7930)
+
+
+EVT_DECLARE_USER_FUNC(evt_sub_item_select_menu, 4)
+
 UNKNOWN_FUNCTION(func_800d7b9c);
 UNKNOWN_FUNCTION(func_800d7e70);
 UNKNOWN_FUNCTION(func_800d815c);

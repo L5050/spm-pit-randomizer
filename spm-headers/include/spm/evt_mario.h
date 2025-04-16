@@ -41,7 +41,8 @@ UNKNOWN_FUNCTION(func_800efac4);
 UNKNOWN_FUNCTION(func_800efb50);
 UNKNOWN_FUNCTION(func_800efbdc);
 UNKNOWN_FUNCTION(func_800efc54);
-EVT_UNKNOWN_USER_FUNC(func_800efce0)
+
+EVT_DECLARE_USER_FUNC(evt_mario_get_height, 1)
 
 EVT_DECLARE_USER_FUNC(evt_mario_direction_reset, 0)
 
@@ -118,7 +119,13 @@ UNKNOWN_FUNCTION(func_800f267c);
 UNKNOWN_FUNCTION(func_800f26c0);
 UNKNOWN_FUNCTION(func_800f27f4);
 UNKNOWN_FUNCTION(func_800f2974);
-UNKNOWN_FUNCTION(func_800f29c8);
+
+// evt_mario_take_damage(s32 type, f32 x, f32 y, f32 z, s32 dmgFlags, s32 damage)
+// type 1 = no damage vector, flags = 0, dmg = 1
+// type 2 = no damage vector; flags and dmg taken from params
+// type 3 = all data taken from params
+EVT_DECLARE_USER_FUNC(evt_mario_take_damage, 6)
+
 UNKNOWN_FUNCTION(evt_mario_tamara_onoff);
 UNKNOWN_FUNCTION(evt_mario_tamara_chg_mode);
 UNKNOWN_FUNCTION(func_800f2c00);
@@ -147,7 +154,7 @@ UNKNOWN_FUNCTION(evt_mario_pane_change_func);
 UNKNOWN_FUNCTION(evt_mario_get_pane_change_func);
 UNKNOWN_FUNCTION(func_800f3310);
 UNKNOWN_FUNCTION(func_800f3334);
-UNKNOWN_FUNCTION(evt_mario_check_3d);
+EVT_DECLARE_USER_FUNC(evt_mario_check_3d, 1)
 UNKNOWN_FUNCTION(func_800f33b0);
 UNKNOWN_FUNCTION(evt_mario_calc_damage_to_enemy);
 

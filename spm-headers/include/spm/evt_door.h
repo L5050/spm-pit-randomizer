@@ -104,7 +104,7 @@ UNKNOWN_FUNCTION(func_800e4014);
 UNKNOWN_FUNCTION(func_800e40e0);
 
 // evt_door_set_map_door_descs(MapDoorDesc * descs, s32 count)
-EVT_DECLARE_USER_FUNC(evt_door_set_map_door_descs, 1)
+EVT_DECLARE_USER_FUNC(evt_door_set_map_door_descs, 2)
 
 // evt_door_enable_disable_map_door_desc(bool enabled, const char * name)
 EVT_DECLARE_USER_FUNC(evt_door_enable_disable_map_door_desc, 2)

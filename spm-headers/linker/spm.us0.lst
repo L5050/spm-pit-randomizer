@@ -679,7 +679,7 @@
 80102488:evt_npc_delete
 800F015C:evt_mario_walk_to
 800EFE10:evt_mario_face_npc
-800E63CC:evt_eff_exclamation_question
+800E63CC:evt_eff_fukidashi
 8010BED4:evt_pouch_get_coins
 8010BF20:evt_pouch_add_coins
 800D4F58:evt_sub_hud_configure

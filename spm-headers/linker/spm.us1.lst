@@ -516,7 +516,7 @@
 801024A8:evt_npc_delete
 800F017C:evt_mario_walk_to
 800EFE30:evt_mario_face_npc
-800E63EC:evt_eff_exclamation_question
+800E63EC:evt_eff_fukidashi
 8010BEF4:evt_pouch_get_coins
 8010BF40:evt_pouch_add_coins
 800D4F78:evt_sub_hud_configure

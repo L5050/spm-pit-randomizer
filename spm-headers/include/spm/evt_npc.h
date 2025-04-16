@@ -28,8 +28,13 @@ UNKNOWN_FUNCTION(func_800feb54);
 UNKNOWN_FUNCTION(func_800fec04);
 UNKNOWN_FUNCTION(func_800fecd0);
 UNKNOWN_FUNCTION(func_800fed9c);
-UNKNOWN_FUNCTION(func_800fee80);
-EVT_UNKNOWN_USER_FUNC(func_800fef30)
+
+// evt_npc_get_scale(const char * name, f32 xScale, f32 yScale, f32 zScale)
+EVT_DECLARE_USER_FUNC(evt_npc_get_scale, 4)
+
+// evt_npc_set_scale(const char * name, f32 xScale, f32 yScale, f32 zScale)
+EVT_DECLARE_USER_FUNC(evt_npc_set_scale, 4)
+
 UNKNOWN_FUNCTION(func_800feffc);
 UNKNOWN_FUNCTION(func_800ff100);
 UNKNOWN_FUNCTION(func_800ff1cc);
@@ -61,7 +66,7 @@ UNKNOWN_FUNCTION(func_80102424);
 EVT_DECLARE_USER_FUNC(evt_npc_glide_to, 10)
 EVT_UNKNOWN_USER_FUNC(func_80102bf8)
 UNKNOWN_FUNCTION(evt_npc_get_hp);
-UNKNOWN_FUNCTION(evt_npc_get_max_hp);
+EVT_DECLARE_USER_FUNC(evt_npc_get_max_hp, 2)
 UNKNOWN_FUNCTION(evt_npc_set_hp);
 
 // evt_npc_delete(const char * name)
@@ -82,8 +87,8 @@ UNKNOWN_FUNCTION(func_80103268);
 UNKNOWN_FUNCTION(evt_npc_get_cur_anim);
 UNKNOWN_FUNCTION(evt_npc_search_anim_defs);
 
-// func_80103410(const char * npcName, s32 partId)
-EVT_DECLARE_USER_FUNC(func_80103410, 2)
+// evt_npc_wait_anim_end(const char * npcName, s32 partId)
+EVT_DECLARE_USER_FUNC(evt_npc_wait_anim_end, 2)
 
 UNKNOWN_FUNCTION(func_80103574);
 
@@ -120,7 +125,7 @@ UNKNOWN_FUNCTION(func_8010457c);
 UNKNOWN_FUNCTION(func_801045ac);
 UNKNOWN_FUNCTION(func_801045dc);
 UNKNOWN_FUNCTION(func_80104638);
-EVT_DECLARE_USER_FUNC(func_80104694, 2)
+EVT_DECLARE_USER_FUNC(evt_npc_set_move_mode, 2)
 UNKNOWN_FUNCTION(func_801046f4);
 UNKNOWN_FUNCTION(func_80104750);
 UNKNOWN_FUNCTION(func_801047ac);
@@ -219,8 +224,8 @@ UNKNOWN_FUNCTION(func_80107b80);
 EVT_DECLARE_USER_FUNC(evt_npc_set_camid, 2)
 
 EVT_DECLARE_USER_FUNC(func_80107c38, 2)
-EVT_DECLARE_USER_FUNC(func_80107cfc, 0)
-EVT_DECLARE_USER_FUNC(func_80107d20, 0)
+EVT_DECLARE_USER_FUNC(evt_npc_freeze_all, 0)
+EVT_DECLARE_USER_FUNC(evt_npc_unfreeze_all, 0)
 UNKNOWN_FUNCTION(func_80107d44);
 UNKNOWN_FUNCTION(func_80107d90);
 UNKNOWN_FUNCTION(func_80107ddc);
@@ -235,7 +240,10 @@ UNKNOWN_FUNCTION(func_801083d8);
 UNKNOWN_FUNCTION(func_80108440);
 UNKNOWN_FUNCTION(func_801084fc);
 UNKNOWN_FUNCTION(func_801085e4);
-EVT_UNKNOWN_USER_FUNC(func_801086fc)
+
+// evt_npc_get_active_count(s32 num)
+EVT_DECLARE_USER_FUNC(evt_npc_get_active_count, 1)
+
 UNKNOWN_FUNCTION(func_8010874c);
 UNKNOWN_FUNCTION(func_801087d8);
 UNKNOWN_FUNCTION(func_80108930);
@@ -283,11 +291,14 @@ UNKNOWN_FUNCTION(func_8010a1c4);
 UNKNOWN_FUNCTION(func_8010a1e8);
 UNKNOWN_FUNCTION(func_8010a298);
 UNKNOWN_FUNCTION(evt_npc_try_catch_card);
-UNKNOWN_FUNCTION(func_8010a37c);
+EVT_DECLARE_USER_FUNC(evt_npc_set_animpose_disp_callback, 3)
 EVT_DECLARE_USER_FUNC(func_8010a418, 2)
 UNKNOWN_FUNCTION(func_8010a4ec);
 UNKNOWN_FUNCTION(func_8010a5ec);
-UNKNOWN_FUNCTION(func_8010a788);
+
+// evt_npc_add_flip_box(int, const char * name)
+EVT_DECLARE_USER_FUNC(evt_npc_add_flip_box, 2)
+
 UNKNOWN_FUNCTION(func_8010a808);
 
 // evt_npc_teleport_effect(bool appearDisappear, const char * instanceName)
@@ -300,7 +311,9 @@ UNKNOWN_FUNCTION(func_8010ac50);
 UNKNOWN_FUNCTION(func_8010b550);
 UNKNOWN_FUNCTION(func_8010bc44);
 UNKNOWN_FUNCTION(func_8010bcf0);
-UNKNOWN_FUNCTION(evt_npc_agb_async);
+
+// evt_npc_agb_async(const char * animPoseName, val???)
+EVT_DECLARE_USER_FUNC(evt_npc_agb_async, 2)
 
 // evt_npc_tribe_agb_async(s32 tribeId)
 EVT_DECLARE_USER_FUNC(evt_npc_tribe_agb_async, 1)
