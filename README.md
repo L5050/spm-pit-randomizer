@@ -18,7 +18,7 @@ Please do not enable any more than one SPM mod at one time, as they are not cros
 - Be sure to add/enable the REL Loader Gecko code for your game version before running the game with Riivolution patches. You can find the codes [here.](https://github.com/SeekyCt/spm-rel-loader/tree/master/spm-rel-loader/loader)
 
 ## Features
-* Quite honestly, there are just too many to list out here. The entire Pit experience has been transformed - see for yourself!
+* Quite honestly, there are just too many to list out here. The entire Pit experience has been transformed - see for yourself! *(You're free to read the patch notes in the Releases section, too, if that's your sort of thing 👁)*
 
 ## Planned Features
 * Add more roguelike features to the Flipside Pit to completely change the way you play and strategize
