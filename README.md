@@ -27,8 +27,7 @@ Please do not enable any more than one SPM mod at one time, as they are not cros
 * Many many more things :)
 
 ## Known Issues (Will be patched in a future update)
-* Tattles and Catch Card descriptions are mostly unfinished (although all of the enemy names should be accurate now!), and some ATK/DEF related details may be inaccurate.
-* Strange behavior may occur on Hard Difficulty when a shell hits certain enemies or projectiles.
+* Tattles and Catch Card descriptions are mostly unfinished (although all of the enemy names should be accurate now!), and some ATK/DEF related details may be inaccurate. Additionally, the textures on some Catch Cards may be improperly positioned or scaled.
 * Almost certainly a whole lot more I'm not thinking of or don't know about. Please report bugs to me in the [SPM Speedrunning community's](https://discord.gg/nvDAWG6fat) #modding channel! Keep in mind that some behavior may just be vanilla, so please only report bugs that seem specifically related to this mod.
 
 ## Special Thanks
