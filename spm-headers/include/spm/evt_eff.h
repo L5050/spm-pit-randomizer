@@ -5,26 +5,28 @@
 
 CPP_WRAPPER(spm::evt_eff)
 
-enum SpmExplosionVariants
+enum EffSpmExplosion
 {
-    /* 0x0 */ SPM_EXPLOSION_BOMB,
-    /* 0x1 */ SPM_EXPLOSION_KITTY_LASER,
-    /* 0x2 */ SPM_EXPLOSION_NINJOE_BOMB
+/* 0x0 */ SPM_EXPLOSION_BOMB,
+/* 0x1 */ SPM_EXPLOSION_KITTY_LASER,
+/* 0x2 */ SPM_EXPLOSION_NINJOE_BOMB
 };
 
 /*
-    Several variables in evt_eff are cast as multiple types and used as one or the other, depending on which effType is named.
-        Args 11-14 are never used.
+    Several variables in evt_eff are casted as multiple types and used as one or the other, depending on which effType is named.
+        Args 11-14 are *never* used meaningfully.
 
     effType is passed through effGetSet to search for EffSet ids, which are searched casewise to run an effentry function
         Different variables are used for different purposes for each one.
 
     spm_explosion:
-        evt_eff(const char * instanceName, const char * effType, uint variant, f32 x, f32 y, f32 z, f32 scale)
+        evt_eff(const char * instanceName, const char * effType, u32 variant, f32 x, f32 y, f32 z, f32 scale)
 
     spm_recovery:
         evt_eff(const char * instanceName, const char * effType, f32 x, f32 y, f32 z, s32 hp)
 
+    kemuri_test:
+        evt_eff(const char * instanceName, const char * effType, u32 variant, f32 x, f32 y, f32 z, f32 scale)
 */
 EVT_DECLARE_USER_FUNC(evt_eff, 14)
 

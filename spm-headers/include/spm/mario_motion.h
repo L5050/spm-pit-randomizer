@@ -1,10 +1,11 @@
 #pragma once
 
 #include <common.h>
+#include <spm/mario.h>
 
 CPP_WRAPPER(spm::mario_motion)
 
-UNKNOWN_FUNCTION(marioMotion);
+void marioMotion();
 void marioChgMot(s32 nextMotionId);
 UNKNOWN_FUNCTION(marioChgMotSub);
 UNKNOWN_FUNCTION(marioChgMot2);
@@ -18,7 +19,7 @@ UNKNOWN_FUNCTION(marioGetJumpParaDef);
 UNKNOWN_FUNCTION(func_801442b4);
 UNKNOWN_FUNCTION(func_801444d0);
 UNKNOWN_FUNCTION(func_8014465c);
-UNKNOWN_FUNCTION(func_80144908);
+double func_80144908(double param_1, double param_2, double param_3, double param_4, double param_5);
 UNKNOWN_FUNCTION(func_80144bbc);
 UNKNOWN_FUNCTION(func_80144cf4);
 UNKNOWN_FUNCTION(func_80144de4);
@@ -35,7 +36,7 @@ UNKNOWN_FUNCTION(marioLandCamShake);
 UNKNOWN_FUNCTION(marioLandon);
 UNKNOWN_FUNCTION(func_80146448);
 UNKNOWN_FUNCTION(func_8014651c);
-UNKNOWN_FUNCTION(func_80146570);
+s32 func_80146570();
 UNKNOWN_FUNCTION(func_801466a8);
 UNKNOWN_FUNCTION(func_8014680c);
 UNKNOWN_FUNCTION(func_801468c8);
@@ -65,7 +66,7 @@ UNKNOWN_FUNCTION(func_80148928);
 UNKNOWN_FUNCTION(mot_dummy);
 UNKNOWN_FUNCTION(mot_22);
 UNKNOWN_FUNCTION(mot_23);
-UNKNOWN_FUNCTION(func_80148c28);
+void func_80148c28(spm::mario::MarioWork * mw, s32 param_2, s32 param_3);
 UNKNOWN_FUNCTION(func_80149680);
 UNKNOWN_FUNCTION(func_801496cc);
 UNKNOWN_FUNCTION(mot_parasol_guard);

@@ -2,6 +2,7 @@
 
 #include <common.h>
 #include <spm/effdrv.h>
+#include <spm/mario.h>
 
 CPP_WRAPPER(spm::mario_status)
 
@@ -29,7 +30,7 @@ USING(wii::mtx::Vec3)
 
 void marioStatusApplyStatuses(s32 status, s32 lv);
 
-void marioStatusEntry(s32 type, uint flags, void * userWork, void * mainFunc, void * deleteFunc, void * mapChangeFunc);
+void marioStatusEntry(s32 type, u32 flags, void * userWork, void * mainFunc, void * deleteFunc, void * mapChangeFunc);
 
 void statusIconEffectSetPos(double x, double y, double z, EffEntry * effEntry);
 

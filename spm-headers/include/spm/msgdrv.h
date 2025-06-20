@@ -72,7 +72,7 @@ DECOMP_STATIC(MsgWork msgdrv_work)
 typedef struct
 {
 /* 0x0 */ const char * name;
-/* 0x4 */ s32 iconid;
+/* 0x4 */ s32 tplIdx;
 } IconNameIdDef;
 SIZE_ASSERT(IconNameIdDef, 0x8)
 

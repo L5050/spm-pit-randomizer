@@ -92,7 +92,7 @@ enum MobjThakoType
 */
 EVT_DECLARE(mobj_save_blk_sysevt)
 
-UNKNOWN_FUNCTION(evt_mobj_entry);
+UNKNOWN_FUNCTION(evt_mobj_entry)
 
 // evt_mobj_delete(const char * name)
 EVT_DECLARE_USER_FUNC(evt_mobj_delete, 1)
@@ -102,7 +102,7 @@ EVT_UNKNOWN_USER_FUNC(evt_mobj_exec_cancel)
 // evt_mobj_hit_onoff(bool on, const char * name)
 EVT_DECLARE_USER_FUNC(evt_mobj_hit_onoff, 2)
 
-UNKNOWN_FUNCTION(func_800f3714);
+UNKNOWN_FUNCTION(func_800f3714)
 
 // evt_mobj_get_joint_names(const char * name, const char * a2Name, const char * a3Name)
 EVT_DECLARE_USER_FUNC(evt_mobj_get_joint_names, 3)
@@ -110,8 +110,8 @@ EVT_DECLARE_USER_FUNC(evt_mobj_get_joint_names, 3)
 // evt_mobj_flag_onoff(bool on, bool flag4, const char * name, u32 mask)
 EVT_DECLARE_USER_FUNC(evt_mobj_flag_onoff, 4)
 
-UNKNOWN_FUNCTION(func_800f38d8);
-UNKNOWN_FUNCTION(func_800f3980);
+UNKNOWN_FUNCTION(func_800f38d8)
+UNKNOWN_FUNCTION(func_800f3980)
 
 // evt_mobj_get_position(const char * name, f32& x, f32& y, f32& z)
 EVT_DECLARE_USER_FUNC(evt_mobj_get_position, 4)
@@ -125,51 +125,52 @@ EVT_DECLARE_USER_FUNC(evt_mobj_set_scale, 4)
 // evt_mobj_set_rotation(const char * name, f32 xRotation, f32 yRotation, f32 zRotation)
 EVT_DECLARE_USER_FUNC(evt_mobj_set_rotation, 4)
 
-UNKNOWN_FUNCTION(evt_mobj_set_anim);
+// evt_mobj_set_anim(const char * mobjName, const char * animName)
+EVT_DECLARE_USER_FUNC(evt_mobj_set_anim, 2)
 
 // evt_mobj_wait_animation_end(const char * name, UNUSED)
 EVT_DECLARE_USER_FUNC(evt_mobj_wait_animation_end, 2)
 
-UNKNOWN_FUNCTION(evt_mobj_set_interact_script);
-UNKNOWN_FUNCTION(evt_mobj_set_item);
-UNKNOWN_FUNCTION(func_800f3fa8);
-UNKNOWN_FUNCTION(func_800f4018);
-UNKNOWN_FUNCTION(evt_mobj_check);
-UNKNOWN_FUNCTION(func_800f429c);
-UNKNOWN_FUNCTION(mobj_sui);
-UNKNOWN_FUNCTION(mobj_sui_15);
+UNKNOWN_FUNCTION(evt_mobj_set_interact_script)
+UNKNOWN_FUNCTION(evt_mobj_set_item)
+UNKNOWN_FUNCTION(func_800f3fa8)
+UNKNOWN_FUNCTION(func_800f4018)
+UNKNOWN_FUNCTION(evt_mobj_check)
+UNKNOWN_FUNCTION(func_800f429c)
+UNKNOWN_FUNCTION(mobj_sui)
+UNKNOWN_FUNCTION(mobj_sui_15)
 
 // evt_mobj_sui(s32 type, const char * instanceName, f32 x, f32 y, f32 z, 
 //              EvtScriptCode * hitScript, bool inactive, void * stg3SuiNames)
 // stg3SuiNames is an instanceName array exclusively used for sui types 15/16 (Pink/Blue) to toggle other switches with types 15/16
 EVT_DECLARE_USER_FUNC(evt_mobj_sui, 8)
 
-UNKNOWN_FUNCTION(mobj_jump_kumo);
-UNKNOWN_FUNCTION(mobj_big_jump_kumo);
-UNKNOWN_FUNCTION(evt_mobj_jump_kumo);
-UNKNOWN_FUNCTION(mobj_jumpstand);
-UNKNOWN_FUNCTION(evt_mobj_jumpstand);
-UNKNOWN_FUNCTION(mobj_hunmer_blk);
+UNKNOWN_FUNCTION(mobj_jump_kumo)
+UNKNOWN_FUNCTION(mobj_big_jump_kumo)
+UNKNOWN_FUNCTION(evt_mobj_jump_kumo)
+UNKNOWN_FUNCTION(mobj_jumpstand)
+UNKNOWN_FUNCTION(evt_mobj_jumpstand)
+UNKNOWN_FUNCTION(mobj_hunmer_blk)
 
 // evt_mobj_hunmer_blk(s32 type, const char * instanceName, f32 x, f32 y, f32 z,
 //              EvtScriptCode * interactScript, bool inactive)
 EVT_DECLARE_USER_FUNC(evt_mobj_hunmer_blk, 7)
 
-UNKNOWN_FUNCTION(mobj_zyo);
-UNKNOWN_FUNCTION(func_800f5a48);
+UNKNOWN_FUNCTION(mobj_zyo)
+UNKNOWN_FUNCTION(func_800f5a48)
 
 // evt_mobj_zyo(const char * name, s32 lockItemId, f32 x, f32 y, f32 z, f32 yRotation,
 //              EvtScriptCode * interactScript, EvtScriptCode * openScript, bool inactive)
 // The interactScript normally handles window selection logic (although this is NOT hardcoded), openScript handles what happens after the lock is opened.
 EVT_DECLARE_USER_FUNC(evt_mobj_zyo, 9)
 
-UNKNOWN_FUNCTION(mobj_thako);
+UNKNOWN_FUNCTION(mobj_thako)
 
 // evt_mobj_thako(s32 type, const char * name, f32 x, f32 y, f32 z, EvtScriptCode * interactScript,
 //              EvtScriptCode * openScript, s32 item, bool opened)
 EVT_DECLARE_USER_FUNC(evt_mobj_thako, 9)
 
-UNKNOWN_FUNCTION(mobj_kan);
+UNKNOWN_FUNCTION(mobj_kan)
 
 /*
     Spawns a sign mobj
@@ -183,7 +184,7 @@ UNKNOWN_FUNCTION(mobj_kan);
 //              EvtScriptCode * interactScript, EvtVar UNUSED)
 EVT_DECLARE_USER_FUNC(evt_mobj_kan, 7)
 
-UNKNOWN_FUNCTION(mobj_arrow);
+UNKNOWN_FUNCTION(mobj_arrow)
 
 // evt_mobj_arrow(const char * name, f32 x, f32 y, f32 z, UNK arg5)
 EVT_DECLARE_USER_FUNC(evt_mobj_arrow, 5)
@@ -194,19 +195,19 @@ EVT_DECLARE_USER_FUNC(evt_mobj_arrow, 5)
     If using a fixed item, returns that
     If using a chance table, returns a random id from that
 */
-UNKNOWN_FUNCTION(mobj_blk_decideItem);
+UNKNOWN_FUNCTION(mobj_blk_decideItem)
 
-UNKNOWN_FUNCTION(mobj_blk);
-UNKNOWN_FUNCTION(mobj_blk_multicoin);
-UNKNOWN_FUNCTION(mobj_blk_breakable);
-UNKNOWN_FUNCTION(mobj_blk_used);
-UNKNOWN_FUNCTION(mobj_blk_ladder);
-UNKNOWN_FUNCTION(mobj_blk_flip);
-UNKNOWN_FUNCTION(mobj_blk_switch);
-UNKNOWN_FUNCTION(mobj_blk_throwable);
-UNKNOWN_FUNCTION(mobj_blk_colour);
-UNKNOWN_FUNCTION(mobj_blk_gravity);
-UNKNOWN_FUNCTION(mobj_blk_bleck_switch);
+UNKNOWN_FUNCTION(mobj_blk)
+UNKNOWN_FUNCTION(mobj_blk_multicoin)
+UNKNOWN_FUNCTION(mobj_blk_breakable)
+UNKNOWN_FUNCTION(mobj_blk_used)
+UNKNOWN_FUNCTION(mobj_blk_ladder)
+UNKNOWN_FUNCTION(mobj_blk_flip)
+UNKNOWN_FUNCTION(mobj_blk_switch)
+UNKNOWN_FUNCTION(mobj_blk_throwable)
+UNKNOWN_FUNCTION(mobj_blk_colour)
+UNKNOWN_FUNCTION(mobj_blk_gravity)
+UNKNOWN_FUNCTION(mobj_blk_bleck_switch)
 
 /*
     Spawns a block mobj (question, brick & variants)
@@ -231,22 +232,22 @@ UNKNOWN_FUNCTION(mobj_blk_bleck_switch);
 //              s32 itemId / ChanceEntry * chanceTable, EvtScript * hitScript, bool inactive)
 EVT_DECLARE_USER_FUNC(evt_mobj_blk, 8)
 
-UNKNOWN_FUNCTION(mobj_eria_block);
+UNKNOWN_FUNCTION(mobj_eria_block)
 
 // evt_mobj_eria_block(const char * instanceName, f32 x, f32 y, f32 z,
 //              EvtScriptCode * interactScript, bool inactive)
 EVT_DECLARE_USER_FUNC(evt_mobj_eria_block, 6)
 
-UNKNOWN_FUNCTION(func_800f97f0);
-UNKNOWN_FUNCTION(func_800f9b14);
-UNKNOWN_FUNCTION(mobj_fire_block);
+UNKNOWN_FUNCTION(func_800f97f0)
+UNKNOWN_FUNCTION(func_800f9b14)
+UNKNOWN_FUNCTION(mobj_fire_block)
 
 // evt_mobj_fire_block(const char * instanceName, f32 x, f32 y, f32 z,
 //              s32 numFire, f32 angle, f32 moveDir, UNUSED arg8, bool stationary
 // arg8 is technically EvtScriptCode * interactScript, but it's unused and nonfunctional
 EVT_DECLARE_USER_FUNC(evt_mobj_fire_block, 9)
 
-UNKNOWN_FUNCTION(mobj_hip_kui);
+UNKNOWN_FUNCTION(mobj_hip_kui)
 
 // evt_mobj_hip_kui(s32 type, const char * instanceName, f32 x, f32 y, f32 z,
 //              EvtScriptCode * descendScript, EvtScriptCode * ascendScript, bool state
@@ -254,12 +255,12 @@ UNKNOWN_FUNCTION(mobj_hip_kui);
 // descendScript activates when ground pounding a post from up --> down; ascendScript activates down --> up
 EVT_DECLARE_USER_FUNC(evt_mobj_hip_kui, 8)
 
-UNKNOWN_FUNCTION(mobj_kaze);
-UNKNOWN_FUNCTION(mobjGetKazePosition);
-UNKNOWN_FUNCTION(updateKazePosition);
-UNKNOWN_FUNCTION(mobjDeleteKaze);
-UNKNOWN_FUNCTION(evt_mobj_kaze);
-UNKNOWN_FUNCTION(mobj_save_blk);
+UNKNOWN_FUNCTION(mobj_kaze)
+UNKNOWN_FUNCTION(mobjGetKazePosition)
+UNKNOWN_FUNCTION(updateKazePosition)
+UNKNOWN_FUNCTION(mobjDeleteKaze)
+UNKNOWN_FUNCTION(evt_mobj_kaze)
+UNKNOWN_FUNCTION(mobj_save_blk)
 
 /*
     Spawns a save block mobj

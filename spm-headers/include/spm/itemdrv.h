@@ -79,7 +79,7 @@ void itemMain();
     Spawns an item
     Switch number is the script variable (usually GSWF) indicating if it's already bene collected
 */
-ItemEntry * itemEntry(const char * name, s32 type, s32 behaviour, f32 x, f32 y, f32 z,
+ItemEntry * itemEntry(const char * name, s32 type, s32 behaviour, f64 x, f64 y, f64 z,
                       EvtScriptCode * pickupScript, EvtVar switchNumber);
 
 /*

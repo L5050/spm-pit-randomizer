@@ -25,7 +25,7 @@ USING(spm::mapdrv::MapFileJoint)
 USING(wii::mtx::Vec3)
 
 struct _MobjEntry;
-typedef void (MobjUpdateFunc)(struct _MobjEntry * entry);
+typedef s32 (MobjUpdateFunc)(struct _MobjEntry * entry);
 
 typedef struct
 {
@@ -82,7 +82,9 @@ typedef struct _MobjEntry
 /* 0x244 */ EvtScriptCode * interactScript; // ran when the player interacts with the object
 /* 0x248 */ EvtScriptCode * afterInteractScript; // usage varies by MOBJ
 /* 0x24C */ s32 state; // values vary by MOBJ
-/* 0x250 */ u8 unknown_0x250[0x2a8 - 0x250];
+/* 0x250 */ u8 unknown_0x250[0x254 - 0x250];
+/* 0x254 */ s32 collectedVar;
+/* 0x258 */ u8 unknown_0x258[0x2a8 - 0x258];
 } MobjEntry;
 SIZE_ASSERT(MobjEntry, 0x2a8)
 

@@ -15,6 +15,6 @@ UNKNOWN_FUNCTION(seqTitleInitLayout);
 UNKNOWN_FUNCTION(func_8017b8ac);
 
 // No idea why this is in this file of all places, but it is
-const char * getNextDanMapname(s32 dungeonNo);
+const char * getDanMapName(s32 dungeonNo);
 
 CPP_WRAPPER_END()

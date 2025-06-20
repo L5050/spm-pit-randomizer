@@ -77,7 +77,7 @@ DECOMP_STATIC(DanWork * dan_wp)
 DECOMP_STATIC(const char * danMapParts[16])
 DECOMP_STATIC(DokanDesc danDokanDescs[8])
 DECOMP_STATIC(MapDoorDesc danMapDoorDescs[2])
-DECOMP_STATIC(s32 dan_flipsideLockItems[])
+DECOMP_STATIC(s32 danFlipsideLockItems[])
 DECOMP_STATIC(s32 dan_flopsideLockItems[])
 
 EVT_DECLARE(dan_lock_interact_evt)

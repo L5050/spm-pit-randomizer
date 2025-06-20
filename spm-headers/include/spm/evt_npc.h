@@ -2,11 +2,16 @@
 
 #include <common.h>
 #include <evt_cmd.h>
+#include <spm/evtmgr.h>
+#include <spm/npcdrv.h>
 
 CPP_WRAPPER(spm::evt_npc)
 
+USING(spm::evtmgr::EvtEntry)
+USING(spm::npcdrv::NPCEntry)
+
 UNKNOWN_FUNCTION(_intplGetFloat);
-UNKNOWN_FUNCTION(evtNpcNameToPtr);
+NPCEntry * evtNpcNameToPtr(EvtEntry * entry, const char * name);
 UNKNOWN_FUNCTION(evtNpcNameToPtr_NoAssert);
 
 // evt_npc_get_position(const char * name, f32& x, f32& y, f32& z)
@@ -44,7 +49,7 @@ EVT_DECLARE_USER_FUNC(evt_npc_set_rgba, 5);
 EVT_DECLARE_USER_FUNC(evt_npc_set_rgbacopy, 5);
 EVT_DECLARE_USER_FUNC(evt_npc_set_rgbacopytwo, 5);
 UNKNOWN_FUNCTION(func_800ff86c);
-EVT_UNKNOWN_USER_FUNC(func_800ff8f8)
+EVT_DECLARE_USER_FUNC(func_800ff8f8, 4)
 UNKNOWN_FUNCTION(func_800ff9a4);
 UNKNOWN_FUNCTION(func_800ffab4);
 EVT_DECLARE_USER_FUNC(evt_npc_walk_to, 8)
@@ -64,7 +69,7 @@ UNKNOWN_FUNCTION(func_80101e60);
 UNKNOWN_FUNCTION(func_80101f48);
 UNKNOWN_FUNCTION(func_80102424);
 EVT_DECLARE_USER_FUNC(evt_npc_glide_to, 10)
-EVT_UNKNOWN_USER_FUNC(func_80102bf8)
+EVT_DECLARE_USER_FUNC(func_80102bf8, 1)
 UNKNOWN_FUNCTION(evt_npc_get_hp);
 EVT_DECLARE_USER_FUNC(evt_npc_get_max_hp, 2)
 UNKNOWN_FUNCTION(evt_npc_set_hp);
@@ -126,7 +131,7 @@ UNKNOWN_FUNCTION(func_801045ac);
 UNKNOWN_FUNCTION(func_801045dc);
 UNKNOWN_FUNCTION(func_80104638);
 EVT_DECLARE_USER_FUNC(evt_npc_set_move_mode, 2)
-UNKNOWN_FUNCTION(func_801046f4);
+EVT_DECLARE_USER_FUNC(evt_npc_get_damage_type, 2)
 UNKNOWN_FUNCTION(func_80104750);
 UNKNOWN_FUNCTION(func_801047ac);
 UNKNOWN_FUNCTION(func_8010480c);

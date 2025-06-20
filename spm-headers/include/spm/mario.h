@@ -145,10 +145,10 @@ typedef bool (MarioPaneChangeFunc)(s32 newPane);
 #define MOT_DASH 0x02 // Walking at full speed
 #define MOT_JUMP 0x03 // Jumping normally
 #define MOT_CROUCH 0x04 // Crouching
-#define MOT_5 0x05
-#define MOT_SPRING 0x06 // Jumping off spring object
-#define MOT_7 0x07
-#define MOT_8 0x08
+#define MOT_SLIDE 0x05 // Sliding off of a slope
+#define MOT_JUMP_EVT 0x06 // Called by evt_mario_jump_to for actions such as jumping on red trampolines & POW Block hits
+#define MOT_SPRING 0x07 // Blue trampolines, 7-3 clouds
+#define MOT_HIT_SUI 0x08 // Hitting a switch object (mobj_sui)
 #define MOT_BOUNCE 0x09 // Jumping off of an NPC
 #define MOT_FALL 0x0A // Falling in the air
 #define MOT_11 0x0B
@@ -160,16 +160,16 @@ typedef bool (MarioPaneChangeFunc)(s32 newPane);
 #define MOT_JABARA 0x11 // Luigi spring jump(?)
 #define MOT_SLIT 0x12 // Thin with slim
 #define MOT_TALK 0x13 // Talking to an NPC
-#define MOT_20 0x14
-#define MOT_21 0x15
-#define MOT_22 0x16
-#define MOT_FORCE_RESET 0x17 // ? TTYD name
+#define MOT_HAZARD_RESPAWN_UNUSED 0x14 // Synonymous with the below; same mainfunc, always sets mot id to 21
+#define MOT_HAZARD_RESPAWN 0x15 // Jumping on spikes and respawning, i.e. 3-3, 3-4, 8-2
+#define MOT_MOT_HAZARD_RESPAWN_END 0x16 // Almost certainly unused; most of this behavior is just handled by the above anyway
+#define MOT_FORCE_RESET 0x17 // ? TTYD name, unused
 #define MOT_24 0x18
 #define MOT_BOTTOMLESS 0x19 // Respawning from falling
 #define MOT_FLIP_AIR 0x1A // Flip into midair
 #define MOT_DAMAGE 0x1B // Taking damage
 #define MOT_28 0x1C
-#define MOT_29 0x1D
+#define MOT_SUCK_IN 0x1D // Bleck big portal and Brobot L-Type sucking-in effect
 #define MOT_30 0x1E
 #define MOT_31 0x1F
 #define MOT_32 0x20
@@ -183,7 +183,7 @@ typedef bool (MarioPaneChangeFunc)(s32 newPane);
 #define MOT_GROW 0x28 // Growing with dottie
 #define MOT_PICCOLO 0x29 // Using piccolo
 #define MOT_BARRY 0x2A // Using barry
-#define MOT_43 0x2B
+#define MOT_SPINDASH 0x2B
 #define MOT_CARRIE_MOUNT 0x2C // Mounting carrie
 #define MOT_CARRIE_DISMOUNT 0x2D // Dismounting carrie
 #define MOT_46 0x2E
@@ -210,7 +210,7 @@ typedef bool (MarioPaneChangeFunc)(s32 newPane);
 #define MOT_67 0x43
 #define MOT_68 0x44
 #define MOT_SWIM 0x45 // Off-ground underwater
-#define MOT_70 0x46
+#define MOT_SPACE_SWIM 0x46 // In space; 4-1/4-3
 #define MOT_CHAR_CHANGE 0x47 // Changing character
 #define MOT_FAIRY_CHANGE 0x48 // Changing pixl
 #define MOT_FLIP 0x49 // Flipping to 2d/3d
@@ -221,6 +221,9 @@ typedef bool (MarioPaneChangeFunc)(s32 newPane);
 
 // Off ground, in water
 #define MARIO_MISC_FLAG_SWIM 0x20000000
+
+// Swimming in space (i.e. 4-1/4-3 state)
+#define MARIO_MISC_FLAG_SPACE_SWIM 0x400000
 
 // Squirps enabled
 #define MARIO_MISC_FLAG_SQUIRPS 0x200000
@@ -247,6 +250,9 @@ typedef bool (MarioPaneChangeFunc)(s32 newPane);
 
 // Lock facing direction towards facingTarget
 #define MARIO_DISP_FLAG_LOCK_FACING 0x20
+
+// Entering/exiting a door
+#define MARIO_DISP_FLAG_DOOR 0x80
 
 
 typedef struct
@@ -324,7 +330,8 @@ typedef struct
 /* 0x0039 */ u8 unknown_0x39[0x3b - 0x39];
 /* 0x003B */ u8 wallTimer;
 /* 0x003C */ s32 subMotionId; // values vary by motion id
-/* 0x0040 */ u8 unknown_0x40[0x48 - 0x40];
+/* 0x0040 */ u8 unknown_0x40[0x44 - 0x40];
+/* 0x0044 */ f32 unknown_0x44;
 /* 0x0048 */ f32 invincibilityTimer;
 /* 0x004C */ u8 unknown_0x4c[0x50 - 0x4c];
 /* 0x0050 */ f32 airTimer; // time in air
@@ -343,7 +350,9 @@ typedef struct
 /* 0x0150 */ f32 dashSpeed; // base dash speed
 /* 0x0154 */ u8 unknown_0x154[0x160 - 0x154];
 /* 0x0160 */ f32 lastGroundSpeed; // xzSpeed when last on ground
-/* 0x0164 */ u8 unknown_0x164[0x174 - 0x164];
+/* 0x0164 */ u8 unknown_0x164[0x168 - 0x164];
+/* 0x0168 */ f32 unknown_0x168;
+/* 0x016C */ u8 unknown_0x16c[0x174 - 0x16c];
 /* 0x0174 */ f32 directionWorld; // degrees
 /* 0x0178 */ f32 directionView; // degrees
 /* 0x017C */ u8 unknown_0x17c[0x180 - 0x17c];
@@ -396,7 +405,11 @@ typedef struct
 /* 0x0320 */ s16 held2Time;
 /* 0x0322 */ u8 unknown_0x322[0x348 - 0x322];
 /* 0x0348 */ s32 sfxIds[4];
-/* 0x0358 */ u8 unknown_0x358[0x3a4 - 0x358];
+/* 0x0358 */ u8 unknown_0x358[0x368 - 0x358];
+/* 0x0368 */ f32 unknown_0x368;
+/* 0x036C */ f32 unknown_0x36c;
+/* 0x0370 */ s32 unknown_0x370;
+/* 0x0374 */ u8 unknown_0x374[0x3a4 - 0x374];
     /*
         Info on entity caught with Thoreau
         catchType indicates the type of caught

@@ -22,7 +22,7 @@ EVT_DECLARE_USER_FUNC(evt_sub_random, 2)
 
 UNKNOWN_FUNCTION(evt_sub_get_stopwatch);
 UNKNOWN_FUNCTION(func_800d41a8);
-UNKNOWN_FUNCTION(evt_sub_get_dist);
+EVT_DECLARE_USER_FUNC(evt_sub_get_dist, 5)
 UNKNOWN_FUNCTION(evt_sub_get_dir);
 UNKNOWN_FUNCTION(evt_sub_get_system_flag);
 UNKNOWN_FUNCTION(func_800d4460);

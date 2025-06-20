@@ -13,7 +13,7 @@ EVT_UNKNOWN_USER_FUNC(evt_item_flag_onoff)
 UNKNOWN_FUNCTION(func_800ecf80);
 UNKNOWN_FUNCTION(func_800ed020);
 UNKNOWN_FUNCTION(func_800ed0bc);
-EVT_UNKNOWN_USER_FUNC(evt_item_wait_collected)
+EVT_DECLARE_USER_FUNC(evt_item_wait_collected, 1)
 UNKNOWN_FUNCTION(func_800ed188);
 UNKNOWN_FUNCTION(func_800ed1dc);
 UNKNOWN_FUNCTION(func_800ed468);
