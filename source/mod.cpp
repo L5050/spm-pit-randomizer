@@ -24,6 +24,7 @@
 #include <spm/bgdrv.h>
 #include <spm/camdrv.h>
 #include <spm/dispdrv.h>
+#include <spm/npc_ninja.h>
 #include <spm/eff_fire.h>
 #include <spm/eff_small_star.h>
 #include <spm/eff_spm_confetti.h>
@@ -89,6 +90,7 @@
 #include <spm/spmario_snd.h>
 #include <spm/swdrv.h>
 #include <spm/system.h>
+#include <spm/npc_dimeen_l.h>
 #include <spm/winmgr.h>
 #include <spm/rel/dan.h>
 #include <spm/rel/machi.h>
@@ -1028,7 +1030,7 @@ namespace mod
         }
     }
 
-    static const char *getDanMapNameNew(s32 dungeonNo)
+    static const char *getNextDanMapnameNew(s32 dungeonNo)
     {
         switch (dungeonNo)
         {
@@ -3486,7 +3488,7 @@ namespace mod
                                                 });
 
         itemEntryReal = patch::hookFunction(itemdrv::itemEntry,
-                                                [](const char * name, s32 type, s32 behaviour, f64 x, f64 y, f64 z, evtmgr::EvtScriptCode * pickupScript, evtmgr::EvtVar switchNumber)
+                                                [](const char * name, s32 type, s32 behaviour, f32 x, f32 y, f32 z, evtmgr::EvtScriptCode * pickupScript, evtmgr::EvtVar switchNumber)
                                                 {
                                                     if (type == 1 && switchNumber == 0 && behaviour != 0) // Coins dropped by enemies are no longer searchable
                                                     {
@@ -3921,7 +3923,7 @@ namespace mod
     static void danOverwrite()
     {
         patch::hookFunction(dan::evt_dan_read_data, evt_dan_read_data_new);
-        patch::hookFunction(seq_title::getDanMapName, getDanMapNameNew);
+        patch::hookFunction(seq_title::getNextDanMapname, getNextDanMapnameNew);
         writeBranchLink(mapdrv::mapLoad, 0x3B8, loadNewDanTex);
         writeBranchLink(mot_damage::onHpEquals0, 0x68, handleHouraiDoll);
         writeBranchLink(hud::hudMain, 0x47C, disorderCoinAttrition);
@@ -3948,7 +3950,7 @@ namespace mod
 
     static void dimenPatch()
     {
-        patch::hookFunction(temp_unk::dimen_determine_move_pos, dimen_determine_move_pos_new);
+        patch::hookFunction(npc_dimeen_l::npc_dimen_determine_move_pos, dimen_determine_move_pos_new);
     }
 
     s32 updateDebugFrameColor(evtmgr::EvtEntry *evtEntry, bool firstRun)
@@ -4177,7 +4179,7 @@ namespace mod
 
     static void patchNpcRgbaFuncs()
     {
-        patch::hookFunction(evt_npc::evt_npc_set_rgba, [](evtmgr::EvtEntry *evtEntry, bool firstRun)
+        patch::hookFunction(evt_npc::evt_npc_set_color, [](evtmgr::EvtEntry *evtEntry, bool firstRun)
                             {
             // Patch all NPCs with Tribe IDs to ignore this function, except for Shadoo.
             evtmgr::EvtVar *args = (evtmgr::EvtVar *)evtEntry->pCurData;
@@ -4216,12 +4218,12 @@ namespace mod
             }
             return 2; });
 
-        patch::hookFunction(evt_npc::evt_npc_set_rgbacopy, [](evtmgr::EvtEntry *entry, bool isFirstCall)
+        patch::hookFunction(evt_npc::evt_npc_set_colorcopy, [](evtmgr::EvtEntry *entry, bool isFirstCall)
                             {
             (void)entry;
             (void)isFirstCall;
             return 2; });
-        patch::hookFunction(evt_npc::evt_npc_set_rgbacopytwo, [](evtmgr::EvtEntry *entry, bool isFirstCall)
+        patch::hookFunction(evt_npc::evt_npc_set_colorcopytwo, [](evtmgr::EvtEntry *entry, bool isFirstCall)
                             {
             (void)entry;
             (void)isFirstCall;
@@ -4980,9 +4982,9 @@ namespace mod
         f32 yVal = evtmgr_cmd::evtGetValue(evtEntry, args[2]);
         f32 zVal = evtmgr_cmd::evtGetValue(evtEntry, args[3]);
         npcdrv::NPCEntry *ownerNpc = (npcdrv::NPCEntry *)evtEntry->ownerNPC;
-        ownerNpc->parts[partId].hitboxSize.x = xVal;
-        ownerNpc->parts[partId].hitboxSize.y = yVal;
-        ownerNpc->parts[partId].hitboxSize.z = zVal;
+        ownerNpc->parts[partId].hitBoxScale.x = xVal;
+        ownerNpc->parts[partId].hitBoxScale.y = yVal;
+        ownerNpc->parts[partId].hitBoxScale.z = zVal;
         return 2;
     }
     EVT_DECLARE_USER_FUNC(setHitboxSize, 4)
@@ -5314,7 +5316,7 @@ namespace mod
         s32 floor = swdrv::swByteGet(1);
         floor = floor + 1;
         swdrv::swByteSet(1, floor);
-        const char *destMap = getDanMapNameNew(floor);
+        const char *destMap = getNextDanMapnameNew(floor);
         evtmgr::EvtVar *args = (evtmgr::EvtVar *)evtEntry->pCurData;
         evtmgr_cmd::evtSetValue(evtEntry, args[0], destMap);
         return 2;
@@ -5327,7 +5329,7 @@ namespace mod
         floor = floor + 4;
         // floor = floor + 198; // DEBUG
         swdrv::swByteSet(1, floor);
-        const char *destMap = getDanMapNameNew(floor);
+        const char *destMap = getNextDanMapnameNew(floor);
         evtmgr::EvtVar *args = (evtmgr::EvtVar *)evtEntry->pCurData;
         evtmgr_cmd::evtSetValue(evtEntry, args[0], destMap);
         return 2;
@@ -5604,8 +5606,8 @@ namespace mod
         }
         if (customSelectType >= CustomSelects::SELECT_FEATURES)
         {
-            msgdrv::msgdrv_msgIcon[3].tplIdx = 0x86;
-            msgdrv::msgdrv_msgIcon[4].tplIdx = 0x87;
+            msgdrv::msgdrv_msgIcon[3].iconid = 0x86;
+            msgdrv::msgdrv_msgIcon[4].iconid = 0x87;
         }
         if (customSelectType == CustomSelects::SELECT_FEATURES)
         {
@@ -5635,8 +5637,8 @@ namespace mod
             item_data::itemDataTable[item_data::ItemType::ITEM_ID_USE_KAMINARI_DOKKAN].iconId = 0x6E;
             item_data::itemDataTable[item_data::ItemType::ITEM_ID_USE_KIRAKIRA_OTOSHI].iconId = 0x6F;
             item_data::itemDataTable[item_data::ItemType::ITEM_ID_USE_POW_BLOCK].iconId = 0x70;
-            msgdrv::msgdrv_msgIcon[3].tplIdx = 0xF;
-            msgdrv::msgdrv_msgIcon[4].tplIdx = 0x10;
+            msgdrv::msgdrv_msgIcon[3].iconid = 0xF;
+            msgdrv::msgdrv_msgIcon[4].iconid = 0x10;
         }
         return 2;
     }
@@ -6227,7 +6229,7 @@ namespace mod
     END_IF()
     WAIT_MSEC(300)
     USER_FUNC(evt_msg::evt_msg_print, 1, PTR(shadooDoBattle), 0, LW(10))
-    USER_FUNC(evt_npc::func_80102bf8, LW(10))
+    USER_FUNC(evt_npc::evt_npc_restart_evt_id, LW(10))
     USER_FUNC(evt_cam::evt_cam_zoom_to_coords, 500, 11)
     WAIT_MSEC(500)
     USER_FUNC(evt_mario::evt_mario_set_anim_change_handler, 0)
@@ -6865,7 +6867,7 @@ namespace mod
 
     s32 evt_dan_patch_dokan(evtmgr::EvtEntry *evtEntry, bool firstRun)
     {
-        dan::danChestRoomDokanDesc.destMapName = "mac_05";
+        dan::dan_chestRoomDokanDesc.destMapName = "mac_05";
         return 2;
     }
     EVT_DECLARE_USER_FUNC(evt_dan_patch_dokan, 0)
@@ -6927,7 +6929,7 @@ namespace mod
     CASE_EQUAL(5)
     CASE_EQUAL(17)
     CASE_ETC()
-    USER_FUNC(evt_npc::func_80102bf8, PTR("dan_koburon"))
+    USER_FUNC(evt_npc::evt_npc_restart_evt_id, PTR("dan_koburon"))
     RETURN()
     END_SWITCH()
     USER_FUNC(evt_mario::evt_mario_key_off, 1)
@@ -6975,7 +6977,7 @@ namespace mod
     WAIT_MSEC(200)
     END_IF()
     USER_FUNC(evt_mario::evt_mario_key_on)
-    USER_FUNC(evt_npc::func_80102bf8, PTR("dan_koburon"))
+    USER_FUNC(evt_npc::evt_npc_restart_evt_id, PTR("dan_koburon"))
     RETURN()
     EVT_END()
 
@@ -7001,7 +7003,7 @@ namespace mod
     ELSE()
     IF_EQUAL(GSWF(384), 0)
     IF_EQUAL(GSWF(1640), 1)
-    USER_FUNC(evt_npc::evt_npc_set_rgba, PTR("dan_koburon"), 60, 100, 255, 255)
+    USER_FUNC(evt_npc::evt_npc_set_color, PTR("dan_koburon"), 60, 100, 255, 255)
     END_IF()
     USER_FUNC(evt_npc::evt_npc_set_position, PTR("me"), LW(3), LW(4), LW(5))
     USER_FUNC(evt_snd::evt_snd_sfxon_npc, PTR("SFX_E_KOBURON_OUT1"), PTR("me"))
@@ -7126,7 +7128,7 @@ namespace mod
     USER_FUNC(evt_npc::evt_npc_modify_part, PTR("dan_koburon"), 1, 11, 20)
     USER_FUNC(evt_npc::evt_npc_modify_part, PTR("dan_koburon"), 1, 10, 20)
     USER_FUNC(evt_npc::evt_npc_modify_part, PTR("dan_koburon"), 1, 12, 20)
-    USER_FUNC(evt_npc::func_80102bf8, PTR("dan_koburon"))
+    USER_FUNC(evt_npc::evt_npc_restart_evt_id, PTR("dan_koburon"))
     RETURN()
     EVT_END()
 
@@ -7191,7 +7193,7 @@ namespace mod
     IF_NOT_EQUAL(GSW(1620), 2) // If difficulty is Hard, do not spawn Flimm at all
     USER_FUNC(evt_npc::evt_npc_entry, PTR("roten"), PTR("n_machi_roten"), 0)
     USER_FUNC(evt_npc::evt_npc_set_axis_movement_unit, PTR("roten"), -1)
-    USER_FUNC(evt_npc::evt_npc_set_property, PTR("roten"), 14, PTR(&dan::rotenTribeAnimDefs))
+    USER_FUNC(evt_npc::evt_npc_set_property, PTR("roten"), 14, PTR(&dan::dan_rotenTribeAnimDefs))
     USER_FUNC(evt_npc::evt_npc_set_anim, PTR("roten"), 0, 1)
     USER_FUNC(evt_npc::evt_npc_flag8_onoff, PTR("roten"), 1, 0x4400004)
     USER_FUNC(evt_npc::evt_npc_animflag_onoff, PTR("roten"), 1, 32)
@@ -7203,7 +7205,7 @@ namespace mod
     USER_FUNC(evt_npc::evt_npc_set_property, PTR("roten"), 10, 60)
     USER_FUNC(evt_npc::evt_npc_modify_part, PTR("roten"), -1, 11, 40)
     USER_FUNC(evt_npc::evt_npc_modify_part, PTR("roten"), -1, 10, 60)
-    USER_FUNC(evt_shop::evt_shop_set_defs, PTR(&dan::rotenShopDef), 1)
+    USER_FUNC(evt_shop::evt_shop_set_defs, PTR(&dan::dan_rotenShopDef), 1)
     END_IF()
     END_IF()
     IF_EQUAL(LW(1), 2) // Merluna
@@ -7347,7 +7349,7 @@ namespace mod
     IF_EQUAL(GSWF(1620), 1)
     USER_FUNC(evt_pouch::evt_pouch_check_have_item, 48, LW(0))
     IF_NOT_EQUAL(LW(0), 0)
-    USER_FUNC(evt_sub::evt_sub_item_select_menu, 0, PTR(&dan::danFlipsideLockItems), LW(0), 0)
+    USER_FUNC(evt_sub::evt_sub_item_select_menu, 0, PTR(&dan::dan_flipsideLockItems), LW(0), 0)
     IF_NOT_EQUAL(LW(0), 48)
     USER_FUNC(evt_mobj::evt_mobj_exec_cancel, PTR("me"))
     END_IF()
@@ -7607,10 +7609,10 @@ namespace mod
     USER_FUNC(dan::evt_dan_read_data)
     USER_FUNC(dan::evt_dan_handle_map_parts, LW(0))
     USER_FUNC(dan::evt_dan_handle_dokans, LW(0))
-    USER_FUNC(evt_door::evt_door_set_dokan_descs, PTR(&dan::danDokanDescs), 8)
+    USER_FUNC(evt_door::evt_door_set_dokan_descs, PTR(&dan::dan_dokanDescs), 8)
     SET(LW(1), 0)
     USER_FUNC(dan::evt_dan_handle_doors, LW(0), LW(1), LW(10), LW(11), LW(2), LW(3), LW(4))
-    USER_FUNC(evt_door::evt_door_set_map_door_descs, PTR(&dan::danMapDoorDescs), 2)
+    USER_FUNC(evt_door::evt_door_set_map_door_descs, PTR(&dan::dan_mapDoorDescs), 2)
     USER_FUNC(evt_door::evt_door_enable_disable_map_door_desc, 0, LW(10))
     USER_FUNC(evt_door::evt_door_enable_disable_map_door_desc, 0, LW(11))
     USER_FUNC(evt_mobj::evt_mobj_zyo, PTR("lock_00"), 48, LW(2), LW(3), LW(4), 0, PTR(homogenize_lock_interact), PTR(dan::dan_lock_open_evt), 0) // Only one lock type
@@ -8578,7 +8580,7 @@ namespace mod
         evtpatch::hookEvtReplaceBlock(temp_unk::goomba_unk2_child, 12, heiho_g_panic, 16);
 
         // Ninjoe patched to only bomb 10% of the time, thanks Lily!
-        writeWord(&temp_unk::ninjoe_bomb_thing, 0xDC, 0x2C03000A);
+        writeWord(&npc_ninja::ninjoe_bomb_calc_chance, 0xDC, 0x2C03000A);
 
         // Shadoo
         evtpatch::hookEvtReplace(dan::dan_start_shadoo_evt, 1, fwd_new_shadoo_evt);
